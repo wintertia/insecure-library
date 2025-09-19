@@ -17,12 +17,17 @@ This is some insane vibe coded garbage I prompted for experimenting. Don't use
 pnpm install
 ```
 
-2. Start the application:
+2. Approve `better-sqlite3`:
+```bash
+pnpm approve-builds
+```
+
+3. Start the application:
 ```bash
 pnpm start
 ```
 
-3. Access the application:
+4. Access the application:
 ```
 http://localhost:4167
 ```
