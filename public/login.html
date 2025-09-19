@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Login</title>
+</head>
+<body>
+    <h1>Library Management System</h1>
+    
+    <form id="loginForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    
+    <div id="message"></div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Store user info in localStorage for session management
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    document.getElementById('message').innerHTML = '<p style="color: green;">Login successful! Redirecting...</p>';
+                    setTimeout(() => {
+                        window.location.href = '/books';
+                    }, 1000);
+                } else {
+                    document.getElementById('message').innerHTML = '<p style="color: red;">' + (result.message || 'Login failed') + '</p>';
+                }
+            } catch (error) {
+                document.getElementById('message').innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        });
+    </script>
+</body>
+</html>

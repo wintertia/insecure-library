@@ -1,0 +1,24 @@
+{
+  "name": "insecure-library",
+  "version": "1.0.0",
+  "description": "An intentionally insecure library application for Pcap inspection and security testing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "install-deps": "pnpm install"
+  },
+  "keywords": [
+    "insecure",
+    "sql-injection",
+    "security-testing",
+    "pcap"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.1",
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}
